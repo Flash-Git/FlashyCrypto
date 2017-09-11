@@ -35,11 +35,16 @@ public class Instance implements Runnable {
 	//private GameState gameState;
 	//private MenuState menuState;
 	
+	private HttpURLConnectionExample http;
 	
 	public Instance(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
+		
+		http = new HttpURLConnectionExample();
+		
+		
 		//keyManager = new KeyManager();
 		//mouseManager = new MouseManager();
 	}
@@ -102,6 +107,13 @@ public class Instance implements Runnable {
 		g.setColor(Color.WHITE);
 		
 		//Draw Here
+		try {
+			http.sendGetOMGETH();
+			http.sendGetOMGUSD();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		//End Draw
 		bs.show();
@@ -111,7 +123,7 @@ public class Instance implements Runnable {
 	@Override
 	public void run() {
 		init();
-		int targetFps = 154;
+		double targetFps = 0.025;
 		double timePerTick = 1000000000 / targetFps;
 		double delta = 0;
 		long now;
