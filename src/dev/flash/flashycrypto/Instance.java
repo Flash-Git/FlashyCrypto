@@ -1,5 +1,7 @@
 package dev.flash.flashycrypto;
 
+import dev.flash.flashycrypto.sections.Summary;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -32,6 +34,8 @@ public class Instance implements Runnable {
 	//Handler
 	private Handler handler;
 	
+	private SectionManager sectionManager;
+	
 	//private GameState gameState;
 	//private MenuState menuState;
 	
@@ -44,6 +48,7 @@ public class Instance implements Runnable {
 		
 		http = new HttpURLConnectionExample();
 		
+		handler = new Handler(this);
 		
 		//keyManager = new KeyManager();
 		//mouseManager = new MouseManager();
@@ -85,10 +90,14 @@ public class Instance implements Runnable {
 		
 		State.setState(gameState);
 		*/
+		
+		sectionManager = new SectionManager(handler);
+		sectionManager.add(new Summary());
+		
 	}
 	
 	private void tick(double delta) {
-	
+		sectionManager.tick(delta);
 	}
 	
 	private void render() {
@@ -107,12 +116,17 @@ public class Instance implements Runnable {
 		g.setColor(Color.WHITE);
 		
 		//Draw Here
+		sectionManager.render(g);
+		
+		
+		/*
 		try {
 			http.sendGetOMGETH();
 			http.sendGetOMGUSD();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		*/
 		
 		
 		//End Draw
@@ -123,7 +137,7 @@ public class Instance implements Runnable {
 	@Override
 	public void run() {
 		init();
-		double targetFps = 0.025;
+		double targetFps = 140;
 		double timePerTick = 1000000000 / targetFps;
 		double delta = 0;
 		long now;

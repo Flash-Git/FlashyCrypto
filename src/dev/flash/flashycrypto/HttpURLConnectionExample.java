@@ -1,15 +1,12 @@
 package dev.flash.flashycrypto;
 
 
-import sun.misc.IOUtils;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class HttpURLConnectionExample {
+	
 	private final String USER_AGENT = "Mozilla/5.0";
 	
 	public static void main(String[] args) throws Exception {
@@ -18,7 +15,7 @@ public class HttpURLConnectionExample {
 		
 		System.out.println("Testing 1 - Send Http GET request");
 		http.sendGetOMGETH();
-
+		
 		
 	}
 	
@@ -43,14 +40,14 @@ public class HttpURLConnectionExample {
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		
-		try{
+		try {
 			//String content = new String(Files.readAllBytes(Paths.get("D:\\CryptoFlash\\DATA.json")));
 			
 			
 			File file = new File("D:\\CryptoFlash\\DATAOMGETH.json");
 			Writer output = new BufferedWriter(new FileWriter(file, true));
 			output.write("\n");
-			while ((inputLine = in.readLine()) != null) {
+			while((inputLine = in.readLine()) != null) {
 				//output.write(inputLine);
 				output.write(inputLine.toString());
 			}
@@ -67,7 +64,7 @@ public class HttpURLConnectionExample {
 			output.close();
 			System.out.println("File has been written");
 			
-		}catch(Exception e){
+		} catch(Exception e) {
 			System.out.println("Could not create file");
 		}
 		
@@ -99,14 +96,14 @@ public class HttpURLConnectionExample {
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		
-		try{
+		try {
 			//String content = new String(Files.readAllBytes(Paths.get("D:\\CryptoFlash\\DATA.json")));
 			
 			
 			File file = new File("D:\\CryptoFlash\\DATAOMGUSD.json");
 			Writer output = new BufferedWriter(new FileWriter(file, true));
 			output.write("\n");
-			while ((inputLine = in.readLine()) != null) {
+			while((inputLine = in.readLine()) != null) {
 				//output.write(inputLine);
 				output.write(inputLine.toString());
 			}
@@ -123,7 +120,7 @@ public class HttpURLConnectionExample {
 			output.close();
 			System.out.println("File has been written");
 			
-		}catch(Exception e){
+		} catch(Exception e) {
 			System.out.println("Could not create file");
 		}
 		
