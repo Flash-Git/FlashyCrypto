@@ -93,6 +93,7 @@ public class Instance implements Runnable {
 		
 		sectionManager = new SectionManager(handler);
 		sectionManager.add(new Summary());
+		sectionManager.add(new Summary());
 		
 	}
 	
